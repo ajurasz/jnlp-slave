@@ -50,7 +50,8 @@ ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 # Install chromium
 RUN set -ex \
   && apt-get update \
-  && apt-get install -y chromium
+  && apt-get install -y chromium \
+  && ln -s /usr/bin/chromium /usr/bin/chromium-browser
 
 USER jenkins
 
