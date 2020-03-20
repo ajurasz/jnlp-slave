@@ -47,14 +47,10 @@ RUN mkdir -p $NVM_DIR \
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
-# Install chrome
+# Install chromium
 RUN set -ex \
   && apt-get update \
-  && apt-get install -y libasound2 libnspr4 libnss3 libxss1 xdg-utils libappindicator3-1 fonts-liberation lsb-release libgtk-3-0 libatspi2.0-0 libatk-bridge2.0-0 \
-  && GOOGLE_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" \
-  && curl --silent --show-error --location --fail --retry 3 --output /tmp/google.deb $GOOGLE_URL \
-  && dpkg -i /tmp/google.deb \
-  && rm -rf /tmp/google.deb
+  && apt-get install -y chromium
 
 USER jenkins
 
