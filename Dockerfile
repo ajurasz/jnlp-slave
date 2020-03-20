@@ -12,6 +12,13 @@ RUN set -ex \
   && mv /tmp/docker/* /usr/bin \
   && rm -rf /tmp/docker /tmp/docker.tgz
 
+# Install docker-compose
+RUN set -ex \
+  && export DOCKER_COMPOSE_VERSION=1.22.0 \
+  && DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m`" \
+  && curl --silent --show-error --location --fail --retry 3 --output /usr/local/bin/docker-compose $DOCKER_COMPOSE_URL \
+  && chmod +x /usr/local/bin/docker-compose
+
 # Install gradle
 RUN set -ex \
   && export GRADLE_VERSION=5.6.2 \
